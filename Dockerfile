@@ -21,7 +21,7 @@ DEBCONF_NONINTERACTIVE_SEEN=true
 ENV PATH /usr/local/bin:$PATH
 
 RUN apt-get update && apt-get install -qqy -y --no-install-recommends \
-    ca-certificates libgdbm3 libsqlite3-0 libssl1.0.0 python-setuptools python-dev build-essential wget \
+    git ca-certificates libgdbm3 libsqlite3-0 libssl1.0.0 python-setuptools python-dev build-essential wget \
     curl zip unzip bzip2 zlib1g-dev libopenjpeg-dev libjpeg-dev
 
 # PYTHON SETUP
@@ -30,8 +30,10 @@ ENV LC_ALL=C.UTF-8 \
     LANG=C.UTF-8 \
     PIPENV_HIDE_EMOJIS=1
 
+# INSTALL PYYAML, PIPENV (with alpine/bare metal fix)
+
 RUN set -ex && easy_install pip \
-    && pip install pipenv pyyaml --upgrade
+    && pip install pyyaml git+git://github.com/pypa/pipenv.git@8378a1b104f2d817790a05da370bef0a1b00f452 --upgrade
 
 # FIREFOX BROWSER
 
