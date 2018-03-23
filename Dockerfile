@@ -24,13 +24,13 @@ RUN apt-get update && apt-get install -qqy -y --no-install-recommends \
     ca-certificates libgdbm3 libsqlite3-0 libssl1.0.0 python-setuptools python-dev build-essential wget \
     curl zip unzip bzip2 zlib1g-dev libopenjpeg-dev libjpeg-dev
 
-ADD virenv /tmp
+# PYTHON SETUP
 
-RUN tar -xzvpf /tmp/virtualenv-15.0.0.tar.gz -C /tmp \
-    && python /tmp/virtualenv-15.0.0/virtualenv.py /opt/v \
-    && rm -rf /tmp/virtualenv-15.0.0
+ENV LC_ALL=C.UTF-8 \
+    LANG=C.UTF-8 \
+    PIPENV_HIDE_EMOJIS=1
 
-RUN /opt/v/bin/pip install pyyaml
+RUN set -ex && pip install pipenv pyyaml --upgrade
 
 # FIREFOX BROWSER
 
