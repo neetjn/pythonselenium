@@ -19,15 +19,14 @@ Docker image with Python 2.7, Chrome, Firefox, and their respective webdrivers.
 
 ### Usage
 
-**edge**
+**Edge** (currently using pipenv)
 ```
 FROM neetjn/pythonselenium:latest
-FROM neetjn/pythonselenium:pipenv
 ```
 
 or
 
-**production**
+**Production**
 ```
 FROM robotgraves/pythonselenium:latest
 ```
