@@ -30,7 +30,8 @@ ENV LC_ALL=C.UTF-8 \
     LANG=C.UTF-8 \
     PIPENV_HIDE_EMOJIS=1
 
-RUN set -ex && pip install pipenv pyyaml --upgrade
+RUN set -ex && easy_install pip \
+    && pip install pipenv pyyaml --upgrade
 
 # FIREFOX BROWSER
 
