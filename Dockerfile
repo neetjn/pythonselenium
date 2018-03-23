@@ -21,7 +21,7 @@ DEBCONF_NONINTERACTIVE_SEEN=true
 ENV PATH /usr/local/bin:$PATH
 
 RUN apt-get update && apt-get install -qqy -y --no-install-recommends \
-    git ca-certificates libgdbm3 libsqlite3-0 libssl1.0.0 python-setuptools python-dev build-essential wget \
+    ca-certificates libgdbm3 libsqlite3-0 libssl1.0.0 python-setuptools python-dev build-essential wget \
     curl zip unzip bzip2 zlib1g-dev libopenjpeg-dev libjpeg-dev
 
 # PYTHON SETUP
@@ -33,14 +33,14 @@ ENV LC_ALL=C.UTF-8 \
 # INSTALL PYYAML, PIPENV (with alpine/bare metal fix)
 
 RUN set -ex && easy_install pip \
-    && pip install pyyaml git+git://github.com/pypa/pipenv.git@8378a1b104f2d817790a05da370bef0a1b00f452 --upgrade
+    && pip install pyyaml pipenv --upgrade
 
 # FIREFOX BROWSER
 
 ARG FIREFOX_VERSION=58.0.2
 RUN FIREFOX_DOWNLOAD_URL=$(if [ $FIREFOX_VERSION = "nightly" ] || [ $FIREFOX_VERSION = "devedition" ]; then echo "https://download.mozilla.org/?product=firefox-$FIREFOX_VERSION-latest-ssl&os=linux64&lang=en-US"; else echo "https://download-installer.cdn.mozilla.net/pub/firefox/releases/$FIREFOX_VERSION/linux-x86_64/en-US/firefox-$FIREFOX_VERSION.tar.bz2"; fi) \
     && apt-get update -qqy \
-    && apt-get -qqy --no-install-recommends install firefox firefox-dbg \
+    && apt-get -qqy --no-install-recommends install firefox \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
     && wget --no-verbose -O /tmp/firefox.tar.bz2 $FIREFOX_DOWNLOAD_URL \
     && apt-get -y purge firefox \
