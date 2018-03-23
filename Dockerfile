@@ -63,7 +63,7 @@ RUN GK_VERSION=$(if [ ${GECKODRIVER_VERSION:-latest} = "latest" ]; then echo $(w
 
 # CHROME BROWSER
 
-ARG CHROME_VERSION="google-chrome-stable=65.0.3325.146-1"
+ARG CHROME_VERSION="google-chrome-stable=65.0.3325.181-1"
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
     && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list \
     && apt-get update -qqy \
