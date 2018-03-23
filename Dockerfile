@@ -35,6 +35,8 @@ ENV LC_ALL=C.UTF-8 \
 RUN set -ex && easy_install pip \
     && pip install pyyaml pipenv --upgrade
 
+RUN ln -s /usr/bin/python /bin/python
+
 # FIREFOX BROWSER
 
 ARG FIREFOX_VERSION=58.0.2
