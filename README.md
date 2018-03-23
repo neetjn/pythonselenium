@@ -1,5 +1,11 @@
 # pythonselenium
 
+Edge
+
+[![Docker Pulls](https://img.shields.io/docker/pulls/neetjn/pythonselenium.svg)](https://hub.docker.com/r/neetjn/pythonselenium/)
+
+Production
+
 [![Docker Pulls](https://img.shields.io/docker/pulls/robotgraves/pythonselenium.svg)](https://hub.docker.com/r/robotgraves/pythonselenium/)
 
 Docker image with Python 2.7, Chrome, Firefox, and their respective webdrivers.
@@ -13,6 +19,15 @@ Docker image with Python 2.7, Chrome, Firefox, and their respective webdrivers.
 
 ### Usage
 
+**edge**
+```
+FROM neetjn/pythonselenium:latest
+FROM neetjn/pythonselenium:pipenv
+```
+
+or
+
+**production**
 ```
 FROM robotgraves/pythonselenium:latest
 ```
