@@ -1,5 +1,5 @@
 FROM ubuntu:16.04
-LABEL authors="Alex Paul,John Nolette <john@neetgroup.net>"
+LABEL authors="John Nolette <john@neetgroup.net>"
 
 # http://bugs.python.org/issue19846
 
@@ -39,7 +39,7 @@ RUN ln -s /usr/bin/python /bin/python
 
 # FIREFOX BROWSER
 
-ARG FIREFOX_VERSION=58.0.2
+ARG FIREFOX_VERSION=60.0.1
 RUN FIREFOX_DOWNLOAD_URL=$(if [ $FIREFOX_VERSION = "nightly" ] || [ $FIREFOX_VERSION = "devedition" ]; then echo "https://download.mozilla.org/?product=firefox-$FIREFOX_VERSION-latest-ssl&os=linux64&lang=en-US"; else echo "https://download-installer.cdn.mozilla.net/pub/firefox/releases/$FIREFOX_VERSION/linux-x86_64/en-US/firefox-$FIREFOX_VERSION.tar.bz2"; fi) \
     && apt-get update -qqy \
     && apt-get -qqy --no-install-recommends install firefox \
@@ -54,7 +54,7 @@ RUN FIREFOX_DOWNLOAD_URL=$(if [ $FIREFOX_VERSION = "nightly" ] || [ $FIREFOX_VER
 
 # GECKODRIVER
 
-ARG GECKODRIVER_VERSION=0.19.1
+ARG GECKODRIVER_VERSION=0.20.1
 RUN GK_VERSION=$(if [ ${GECKODRIVER_VERSION:-latest} = "latest" ]; then echo $(wget -qO- "https://api.github.com/repos/mozilla/geckodriver/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([0-9.]+)".*/\1/'); else echo $GECKODRIVER_VERSION; fi) \
     && echo "Using GeckoDriver version:" $GK_VERSION \
     && wget --no-verbose -O /tmp/geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/download/v$GK_VERSION/geckodriver-v$GK_VERSION-linux64.tar.gz \
@@ -67,7 +67,7 @@ RUN GK_VERSION=$(if [ ${GECKODRIVER_VERSION:-latest} = "latest" ]; then echo $(w
 
 # CHROME BROWSER
 
-ARG CHROME_VERSION="google-chrome-stable=65.0.3325.181-1"
+ARG CHROME_VERSION="google-chrome-stable=67.0.3396.62-1"
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
     && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list \
     && apt-get update -qqy \
@@ -77,7 +77,7 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
 
 # CHROME DRIVER
 
-ARG CHROME_DRIVER_VERSION=2.35
+ARG CHROME_DRIVER_VERSION=2.38.3
 RUN CD_VERSION=$(if [ ${CHROME_DRIVER_VERSION:-latest} = "latest" ]; then echo $(wget -qO- https://chromedriver.storage.googleapis.com/LATEST_RELEASE); else echo $CHROME_DRIVER_VERSION; fi) \
     && echo "Using chromedriver version: "$CD_VERSION \
     && wget --no-verbose -O /tmp/chromedriver_linux64.zip https://chromedriver.storage.googleapis.com/$CD_VERSION/chromedriver_linux64.zip \
