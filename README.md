@@ -7,7 +7,7 @@ Docker image with Python 2.7, Chrome, Firefox, and their respective webdrivers.
 ### Versions
 
 * Chrome: 67 stable
-* Chromedriver: 2.38.1
+* Chromedriver: 2.39.0
 * Firefox: 60
 * Geckodriver: 0.20.1
 
