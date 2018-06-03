@@ -18,4 +18,4 @@ FROM neetjn/pythonselenium:latest
 ```
 
 ---
-Copyright (c) 2017 Alex Paul, John Nolette Licensed under the MIT license.
+Copyright (c) 2017 John Nolette Licensed under the MIT license.

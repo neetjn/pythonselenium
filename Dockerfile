@@ -37,6 +37,14 @@ RUN set -ex && easy_install pip \
 
 RUN ln -s /usr/bin/python /bin/python
 
+# SETUP VIRTUALENV FOR LEGACY USE - REMOVE AFTER MOVE TO PY3
+
+ADD virenv /tmp
+
+RUN tar -xzvpf /tmp/virtualenv-15.0.0.tar.gz -C /tmp \
+    && python /tmp/virtualenv-15.0.0/virtualenv.py /opt/v \
+    && rm -rf /tmp/virtualenv-15.0.0
+
 # FIREFOX BROWSER
 
 ARG FIREFOX_VERSION=60.0.1
